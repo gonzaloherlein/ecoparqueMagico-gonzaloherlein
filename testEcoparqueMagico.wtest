@@ -1,0 +1,31 @@
+import habitantes.*
+import trabajadores.*
+
+describe "Test Primera Parte" {
+
+  test "que Laura pueda cuidar al Dragon" {
+    dragon.asignarCuidador(laura)
+    assert.equals(laura,dragon.cuidadorAsignado())
+  }
+
+  test "que Rodrigo no pueda cuidar a Gargola" {
+    gargola.asignarCuidador(rodrigo)
+    assert.notEquals(rodrigo, gargola.cuidadorAsignado())
+  }
+
+  test "que Rodrigo no pueda cuidar a Gargola cambiando de turno"{
+    rodrigo.cambiarTurno()
+    gargola.asignarCuidador(rodrigo)
+    assert.equals(rodrigo, gargola.cuidadorAsignado())
+  }
+
+  test "que German pueda cuidar a Fenix" {
+    fenix.asignarCuidador(german)
+    assert.equals(german, fenix.cuidadorAsignado())
+  }
+
+  test "que Jimena pueda cuidar a Sirena" {
+    sirena.asignarCuidador(jimena)
+    assert.equals(jimena, sirena.cuidadorAsignado())
+  }
+}
