@@ -1,5 +1,6 @@
 import habitantes.*
 import trabajadores.*
+import ecoparque.* 
 
 describe "Test Primera Parte" {
 
@@ -27,5 +28,37 @@ describe "Test Primera Parte" {
   test "que Jimena pueda cuidar a Sirena" {
     sirena.asignarCuidador(jimena)
     assert.equals(jimena, sirena.cuidadorAsignado())
+  }
+}
+
+describe "Test Segunda Parte"{
+  test "contratar a un trabajador"{
+    ecoparque.contratarTrabajador(rodrigo)
+    assert.equals(4, ecoparque.trabajadores().size())
+  }
+
+  test "despedir a un trabajador"{
+    ecoparque.despedirTrabajador(jimena)
+    assert.equals(2, ecoparque.trabajadores().size())
+  }
+
+  test "despedir a todos los trabajadores"{
+    ecoparque.despedirATodosLosTrabajadores()
+    assert.that(ecoparque.trabajadores().isEmpty())
+  }
+
+  test "El equipo de trabajadores es grande"{
+    ecoparque.contratarTrabajador(rodrigo)
+    assert.that(ecoparque.elEquipoEsGrande())
+  }
+
+  test "El ecoparque no necesita trabajadores"{
+    assert.notThat(ecoparque.trabajadores().isEmpty())
+  }
+}
+
+describe "Test Tercera Parte"{
+  test "Dragon puede ser cuidado por el ecoparque"{
+    assert.that(ecoparque.habitantePuedeSerCuidado(dragon))
   }
 }

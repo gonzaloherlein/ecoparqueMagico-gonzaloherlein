@@ -193,9 +193,12 @@ object gargola {
   var cuidadorAsignado = null
 
   method asignarCuidador(cuidador){
+    var seAsignaCuidador = false
     if(!cuidador.turnoDeManiana() && estadoVivo){
       cuidadorAsignado = cuidador
+      seAsignaCuidador = true
     }
+    return seAsignaCuidador
   }
 
   method cuidadorAsignado() = cuidadorAsignado
