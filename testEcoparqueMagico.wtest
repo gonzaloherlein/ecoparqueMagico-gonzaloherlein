@@ -61,4 +61,50 @@ describe "Test Tercera Parte"{
   test "Dragon puede ser cuidado por el ecoparque"{
     assert.that(ecoparque.habitantePuedeSerCuidado(dragon))
   }
+
+  test "German y Jimena pueden cuidar a Fenix"{
+    assert.equals(#{german,jimena}, ecoparque.obtenerATodosLosQuePuedenCuidarA_(fenix))
+  }
+
+  test "German cuida a sirena"{
+    assert.equals(german, ecoparque.cuidarDeUnHabitanteElegido(sirena))
+  }
+
+  test "Cuidar de todos los animales"{
+    ecoparque.cuidarDeTodosLosAnimales()
+    assert.notEquals(null, dragon.cuidadorAsignado())
+    assert.notEquals(null, unicornio.cuidadorAsignado())
+    assert.notEquals(null, sirena.cuidadorAsignado())
+    assert.notEquals(null, gargola.cuidadorAsignado())
+    assert.notEquals(null, fenix.cuidadorAsignado())
+  }
+
+  test "Pasó el dia para el fenix"{
+    ecoparque.pasarElDia()
+    assert.notThat(fenix.pelajeReluciente())
+  }
+
+  test "Paso el dia para la gargola"{
+    ecoparque.pasarElDia()
+    assert.equals(20, gargola.edad())
+  }
+
+  test "El habitante mas viejo es fenix"{
+    assert.equals(fenix,ecoparque.encontrarHabitanteMasViejo())
+  }
+
+  test "El habitante mas joven es gargola"{
+    assert.equals(gargola,ecoparque.encontrarHabitanteMasJoven())
+  }
+
+  test "Todos los trabajadores aprenden a nadar"{
+    ecoparque.realizarTallerDeNatacion()
+    assert.that(laura.nadar())
+  }
+
+  test "Todos los trabajadores aprenden a resistir a altas temperaturas"{
+    ecoparque.contratarTrabajador(rodrigo)
+    ecoparque.realizarTallerDeResistenciaAlFuego()
+    assert.that(rodrigo.resisteAltasTemperaturas())
+  }
 }

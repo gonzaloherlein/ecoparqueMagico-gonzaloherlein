@@ -4,8 +4,16 @@ object dragon {
   var temperaturaCorporal = 200
   var cuidadorAsignado = null
 
-  method asignarCuidador(cuidador){
+  method puedeSerCuidadoPor(cuidador){
+    var puedeSerCuidado = false
     if(cuidador.resisteAltasTemperaturas()){
+      puedeSerCuidado = true
+    }
+    return puedeSerCuidado
+  }
+
+  method asignarCuidador(cuidador){
+    if(self.puedeSerCuidadoPor(cuidador)){
       cuidadorAsignado = cuidador
     }
   }
@@ -42,6 +50,9 @@ object unicornio {
   var estaFeliz = true
   var poderMagico = 3
   var cuidadorAsignado = null
+
+  method puedeSerCuidadoPor(cuidador) = true
+
 
   method asignarCuidador(cuidador){
     cuidadorAsignado = cuidador
@@ -80,8 +91,16 @@ object sirena {
   var habilidadAcuatica = 40
   var cuidadorAsignado = null
 
-  method asignarCuidador(cuidador){
+  method puedeSerCuidadoPor(cuidador){
+    var puedeSerCuidado = false
     if(cuidador.nadar()){
+      puedeSerCuidado = true
+    }
+    return puedeSerCuidado
+  }
+
+  method asignarCuidador(cuidador){
+    if(self.puedeSerCuidadoPor(cuidador)){
       cuidadorAsignado = cuidador
     }
   }
@@ -121,6 +140,8 @@ object sirena {
     }
     return esJoven
   }
+
+  
 }
 
 object fenix {
@@ -128,8 +149,19 @@ object fenix {
   var pelajeReluciente = true 
   var cuidadorAsignado = null
 
-  method asignarCuidador(cuidador){
+  method pelajeReluciente() = pelajeReluciente
+
+  method puedeSerCuidadoPor(cuidador){
+    var puedeSerCuidado = false
     if(cuidador.resisteAltasTemperaturas() && cuidador.experiencia() > 5){
+      puedeSerCuidado = true
+    }
+    return puedeSerCuidado
+  }
+
+
+  method asignarCuidador(cuidador){
+    if(self.puedeSerCuidadoPor(cuidador)){
       cuidadorAsignado = cuidador
     }
   }
@@ -185,6 +217,8 @@ object fenix {
     }
     return esJoven
   }
+
+  method edad() = edad
 }
 
 object gargola {
@@ -192,13 +226,19 @@ object gargola {
   var estadoVivo = true
   var cuidadorAsignado = null
 
-  method asignarCuidador(cuidador){
-    var seAsignaCuidador = false
+
+  method puedeSerCuidadoPor(cuidador){
+    var puedeSerCuidado = false
     if(!cuidador.turnoDeManiana() && estadoVivo){
-      cuidadorAsignado = cuidador
-      seAsignaCuidador = true
+      puedeSerCuidado = true
     }
-    return seAsignaCuidador
+    return puedeSerCuidado
+  }
+
+  method asignarCuidador(cuidador){
+    if(self.puedeSerCuidadoPor(cuidador)){
+      cuidadorAsignado = cuidador
+    }
   }
 
   method cuidadorAsignado() = cuidadorAsignado
@@ -219,4 +259,6 @@ object gargola {
   }
 
   method esJoven() = true
+
+  method edad() = edad
 }
